@@ -4,46 +4,39 @@ ig.module(
 .requires(
 	'impact.game',
 	'impact.font',
-	'game.entities.robot',
-	'game.levels.test'
+	
+	'game.entities.player',
+	
+	'game.map'
 )
 .defines(function(){
 
-MyGame = ig.Game.extend({
+Heli = ig.Game.extend({
 	
 	// Load a font
 	font: new ig.Font( 'media/04b03.font.png' ),
+	map: new RandomMap('media/tiles-grass.png'),
 	gravity: 1000,
+	speed: 200,
 	
 	init: function() {
-
     ig.input.bind(ig.KEY.SPACE, 'up');
     ig.input.bind(ig.KEY.MOUSE1, 'up');
-
-    this.loadLevel(LevelTest);
     
-    this.robot = this.getEntityByName('robot');
-
+    this.backgroundMaps.push(this.map);
+    
+    // this.player = this.spawnEntity(EntityPlayer, 200, 248);
 	},
 	
 	update: function() {
+    this.screen.x += ig.system.tick * this.speed;
 		this.parent();
-
-    
-    this.screen.x = this.robot.pos.x - 200;
-
 	},
 	
 	draw: function() {
 		this.parent();
-		
-
 	}
 });
 
-
-// Start the Game with 60fps, a resolution of 320x240, scaled
-// up by a factor of 2
-ig.main( '#canvas', MyGame, 60, 800, 600, 1 );
-
+ig.main( '#canvas', Heli, 60, 1024, 512, 1 );
 });

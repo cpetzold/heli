@@ -1,19 +1,19 @@
 ig.module( 
-    'game.entities.robot' 
+    'game.entities.player' 
 )
 .requires(
     'impact.entity'
 )
 .defines(function(){
 
-EntityRobot = ig.Entity.extend({
-  name: 'robot',
-  size: { x: 48, y: 48 },
+EntityPlayer = ig.Entity.extend({
+  name: 'player',
+  size: { x: 32, y: 32 },
   collides: ig.Entity.COLLIDES.STATIC,
   
   maxVel: { x: 1000, y: 1000 },
   
-  animSheet: new ig.AnimationSheet('media/robot.png', 48, 48),
+  animSheet: new ig.AnimationSheet('media/robot.png', 32, 32),
   
   init: function(x, y, settings) {
     this.parent(x, y, settings);
