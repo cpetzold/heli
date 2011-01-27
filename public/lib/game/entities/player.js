@@ -19,18 +19,16 @@ EntityPlayer = ig.Entity.extend({
     this.parent(x, y, settings);
     
     this.addAnim('idle', 1, [0]);
-    
-    this.vel.x = 300;
   },
   
-  update: function() {
-    this.vel.x = 300;
-    
+  update: function() {    
     if( ig.input.state('up') ) {
-      this.accel.y = -2000;
+      this.accel.y = -2500;
     } else {
       this.accel.y = 0;
     }
+    
+    
     
     this.parent();
   }

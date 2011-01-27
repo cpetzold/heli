@@ -8,8 +8,9 @@ ig.module(
 
 RandomMap = ig.BackgroundMap.extend({
 	tilesize: 16,
-	width: 64,
+	width: 65,
 	height: 32,
+	collisionData: [[]],
 	
 	init: function(tileset) {
 	  this.setTileset(tileset);
@@ -92,15 +93,10 @@ RandomMap = ig.BackgroundMap.extend({
 	},
 	
 	update: function() {
-	  
-	  
-	  
-		this.parent();
-	},
-	
-	draw: function() {
-		this.parent();
+	  this.data.shift();
+	  this.data.push(this.generateColumn(3));
 	}
+	
 });
 
 });

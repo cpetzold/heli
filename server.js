@@ -16,7 +16,7 @@ server.get('/', function(req, res){
   });
 });
 
-var im = impact.listen(server, { root: __dirname + '/public/' });
+var im = impact.listen(server, { root: __dirname + '/public' });
 server.use(express.staticProvider(im.root));
 
 server.listen(8080);
