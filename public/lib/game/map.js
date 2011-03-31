@@ -28,10 +28,11 @@ ig.module(
 
     generateColumn: function( thickness, offset ) {
       var column = [];
+      
       for (var i = 0; i < this.height; i++) {
-        if (i < thickness || i > this.height - thickness - 1) {
+        if (i < thickness + offset || i > this.height - thickness + offset - 1) {
           column[i] = 1;
-        } else if (i == thickness || i == this.height - thickness - 1) {
+        } else if (i == thickness + offset || i == this.height - thickness + offset - 1) {
           column[i] = 2;
         } else {
           column[i] = 0;
@@ -40,7 +41,7 @@ ig.module(
       return column;
     },
 
-    drawTiled: function() {	
+    drawTiled: function() {
       var tile = 0,
       anim = null,
       tileOffsetX = (this.scroll.x / this.tilesize).toInt(),
@@ -86,7 +87,7 @@ ig.module(
 
     update: function() {
       this.data.shift();
-      this.data.push(this.generateColumn(3));
+      this.data.push(this.generateColumn(Math.randInt(5,5), Math.randInt(-1, 1)));
     }
 
   });
